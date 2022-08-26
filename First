@@ -1,0 +1,21 @@
+AFRAME.registerComponent('world-pos', {
+        init: function() {
+            this.tmpVec = new THREE.Vector3();
+
+        },
+        tick: function() {
+            this.tmpVec.setFromMatrixPosition(this.el.object3D.matrixWorld);
+            let x = this.tmpVec;
+            globalVariable = x;
+            this.el.object3D.getWorldPosition(this.tmpVec);
+        }
+    });
+    AFRAME.registerComponent('look-at', {
+        schema: {
+            type: 'selector'
+        },
+        init: function() {},
+        tick: function() {
+            this.el.object3D.lookAt(this.data.object3D.position);
+        }
+    });
